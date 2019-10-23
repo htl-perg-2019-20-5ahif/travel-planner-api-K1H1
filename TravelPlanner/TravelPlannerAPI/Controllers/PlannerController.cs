@@ -40,7 +40,7 @@ namespace TravelPlannerAPI.Controllers
 			var planner = new PlannerLibrary(routes);
 			var trip = planner.GetConnection(from, to, start);
 
-			if (!trip.Equals(null))
+			if (trip != null)
 			{
 				return Ok(trip);
 
