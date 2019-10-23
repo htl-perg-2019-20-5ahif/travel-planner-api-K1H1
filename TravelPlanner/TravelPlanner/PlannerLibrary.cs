@@ -16,6 +16,8 @@ namespace TravelPlannerLibrary
 		public Trip GetConnection(string from, string to, string start)
 		{
 
+
+			// basic requirements
 			if (from == "Linz")
 			{
 				return LoopRoutes(to, from, start);
@@ -26,8 +28,21 @@ namespace TravelPlannerLibrary
 				return LoopRoutes(from, to, start);
 
 			}
-			return null;
+
+			//bonus requirements (first to Linz and then to the destination city)
+			var toLinz = LoopRoutes(from, "Linz", start);
+			var fromLinz = LoopRoutes(to, "Linz", toLinz.Arrive);
+
+			return new Trip()
+			{
+				fromCity = from,
+				toCity = to,
+				Leave = toLinz.Leave,
+				Arrive = fromLinz.Arrive
+			};
+
 		}
+	
 
 		public Trip LoopRoutes(string from, string to, string start)
 		{

@@ -47,7 +47,7 @@ namespace TravelPlannerAPI.Controllers
 			}
 			else
 			{
-				return NotFound("No trip found");
+				return NotFound("404: No trip found");
 			}
 
 		}
